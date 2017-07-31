@@ -1,0 +1,106 @@
+body {
+  background-color: azure;
+}
+#img-ul li{
+  list-style-display: none;
+  display: inline-block;
+}
+figcaption {
+  padding: 0px;
+  font-family: Monospace;
+  font-size: 0.8em;
+}
+a, a:hover {
+  text-decoration: none;
+}
+nav {
+  font-size: 1.5em;
+  padding: 10px;
+}
+.up-fixed {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  right: 0;
+  font-size: 2em;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 50%;
+
+}
+.row-about {
+  padding: 20px;
+  background-color: lightgrey;
+  font-size: 2.5em;
+}
+.row-portfolio {
+  padding: 20px;
+  background-color: #CCFFCC;
+  font-size: 2em;
+}
+.row-contact {
+  
+  padding: 20px;
+  background-color: Gainsboro;
+  font-size: 2em;
+}
+.row-footer {
+  
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-size: 0.8em;
+}
+.row-p {
+ 
+  text-shadow: 5px 5px 10px black;
+}
+
+.img-minilogo {
+  width: 70px;
+  
+}
+.img-nav {
+  width: 15%;
+ 
+}
+.centered {
+  text-align: center;
+}
+.myphoto {
+  padding: 20px 0px;
+
+  border-radius: 15%;
+}
+
+.titulo {
+  font-size: 3.5em;
+  text-align: center;
+}
+.img-center {
+  margin: auto;
+}
+
+li .fa {
+  font-size: 1.5em;
+}
+.fa-envelope {
+  color: darkgrey;
+  
+}
+.fa-linkedin {
+  color: blue;
+}
+
+.fa-free-code-camp {
+  color: darkgreen;
+}
+.fa-github {
+  color: black;
+}
+#img-ul a {
+  color: black;
+}
+#img-ul a:hover {
+  color: blue;
+}

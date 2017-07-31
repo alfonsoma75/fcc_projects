@@ -1,0 +1,32 @@
+<html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Api</title>
+    <link rel="stylesheet" href="src/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="src/css/mycss.css" />
+    <script src="src/js/jquery.min.js"></script>
+    <script src="src/js/myjs.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+        		<div class="col-xs-8 col-xs-offset-2">
+        			<div class="row cabecera"><span>Twitch</span>
+						<button class="btn btn-primary" id="all">All</button>        			
+						<button class="btn btn-primary" id="online">Online</button>        			
+						<button class="btn btn-primary" id="offline">Offline</button>        			
+        			</div>
+        			<div class="row" id="fotos">
+					    		
+        			</div>
+        		</div>
+        		
+        </div>     
+    </div>
+    
+</body>
+</html>
+</html>

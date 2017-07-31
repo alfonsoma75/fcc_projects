@@ -1,0 +1,8 @@
+.cuadro {
+   border: 1px solid #000;
+   height: 50%;
+}
+
+#play:hover {
+   background-color: aqua;
+}

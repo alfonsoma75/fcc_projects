@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Tributo a...</title>
+<link rel="stylesheet" href="src/css/bootstrap.min.css" />
+<link rel="stylesheet" href="src/css/mycss.css" />
+<script src="src/js/myjs.js"></script>
+</head>
+<body>
+<div class="container border-container">
+  <div class="row ">
+    <div class="col-xs-8 col-xs-offset-2">
+      <h1 class="text-primary text-center">Pedro Menéndez de Avilés</h1>
+      <h2 class="text-secondary text-center">Adelantado de La Florida</h2>
+    </div>
+  </div><hr />
+  <div class="row ">
+    <div class="col-xs-8 col-xs-offset-2 border-row-img">
+      <img class="img-boostrap img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Estatua_pedro_mendez-adelantado_de_la_florida.JPG" alt="Pedro Menendez" width="50%"/>
+      <figcaption>Monument to Pedro Menendez in Avilés</figcaption>
+    </div>
+  </div>
+  <div class="row border-row-ul justifytext">
+    <div class="col-xs-8 col-xs-offset-2">
+      <ul>
+        <li><strong>1519</strong> Born in Avilés</li>
+        <li><strong>1533</strong>  He went off to fight in one of the wars with France, serving in a small armada against the French corsairs who harassed the maritime commerce of Spain</li>
+        <li><strong>1538</strong> He built a patache, a small but fast row-sailer, suitable for patrolling the coast. He was then able to persuade a number of his relatives to sail with him in search of adventure. It was in this little ship that the youthful Menéndez won his first victory of command in an engagement with French corsairs who attacked three slow Spanish freighters off the coast of Galicia.</li>
+        <li><strong>1554</strong> Was appointed Captain General of the Fleet of the Indies by King Phillip II of Spain. This position carried great honor, and it was an unusual appointment as the Casa de Contratación in Sevilla had appointed the Captain General in the past.</li>
+        <li><strong>1560</strong> Commanded the galleons of the great Armada de la Carrera, or Spanish Treasure Fleet, on their voyage from the Caribbean and Mexico to Spain. He was appointed by King Philip II of Spain, who chose him as Captain General, and his brother Bartolomé Menéndez as Admiral, of the Fleet of the Indies.</li>
+        <li><strong>1565</strong> The Spanish decided to destroy the French outpost of Fort Caroline, located in what is now Jacksonville. The crown approached Menéndez to fit out an expedition to Florida on the condition that he explore and settle the region as King Philip's adelantado, and eliminate the Huguenot French, whom the Catholic Spanish considered to be dangerous heretics.</li>
+        <li><strong>1574</strong> Dies in Santander at the age of 55</li>
+    </ul>
+  </div>
+ </div>
+<div class="row justifytext">
+  <div class="col-xs-8 col-xs-offset-2">
+<blockquote>On 28 August 1565, the feast day of St. Augustine of Hippo, Menéndez's crew finally sighted land. They landed shortly after to found the settlement they named San Agustín (Saint Augustine). The settlement was founded in the former Timucua village of Seloy. The location of the settlement was chosen for its defensibility and proximity to a fresh water artesian spring. To this day, the locals of St. Augustine claim that it was here that Menéndez held the first Catholic mass in what is now the continental United States. <footer> by Wikipedia.</footer></blockquote>
+  </div></div><hr />
+<div class="row p-centered">
+<p>For more information visit: <a href="https://en.wikipedia.org/wiki/Pedro_Men%C3%A9ndez_de_Avil%C3%A9s" target="_blank">Pedro Menéndez de Avilés</a>
+</div>
+</body>
+</html>

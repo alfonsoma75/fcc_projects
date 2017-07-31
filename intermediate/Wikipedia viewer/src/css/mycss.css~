@@ -1,0 +1,73 @@
+a, a:hover, a:link {
+	text-decoration: none;
+}
+body {
+	background-color: azure;
+
+}
+
+input {
+	font-size: 1.1em;
+	border: 1px solid blue;
+	border-radius: 50px;
+	padding-left: 2%
+}
+footer {
+	position: absolute;
+	bottom: 2%;
+	right: 5%;
+	color: red;
+}
+
+.inline {
+	display: inline;
+
+}
+
+.botones {
+	position: absolute;
+	left: 15%;
+	top: 40%;
+}
+
+.resultado {
+	margin-top:8%;
+}
+
+ul {
+	padding: 5px 10px;
+	border: 1px solid grey;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px lightpink;
+}
+li {
+	list-style-type:none;
+	
+}
+.titulo {
+	font-size: 1.3em;
+	color: black;
+	
+}
+
+.estracto {
+	font-family: Monospace;
+	color: grey;
+}
+
+.botonrandom, .botonrandom:hover, .botonrandom:link {
+	color: white;!important
+
+}
+
+.nodatos {
+	background-color: darkred;
+	color: white;
+	text-align: center;
+	font-size: 1.5em;
+	padding: 5%;
+	border-radius: 50px;
+	box-shadow: 5px 5px 10px pink;
+	
+}

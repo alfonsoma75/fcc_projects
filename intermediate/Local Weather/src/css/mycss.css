@@ -1,0 +1,50 @@
+i {
+	font-size: 3em;
+
+}
+
+footer {
+	position: absolute;
+	bottom: 2%;
+	right: 2%;
+	color: red;
+}
+
+
+.back {
+	visibility: hidden;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	text-shadow: 5px 5px 10px white;
+}
+
+.centrartexto {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: darkblue;
+}
+a:hover {
+	text-decoration: none;
+	color: red;
+}
+
+#weather {
+	margin-top: 20%;
+	padding: 2%;
+	background-color: rgba(169,169,169,0.7);
+	box-shadow: 5px 5px 10px lightblue;
+	border-radius: 10px;
+}
+
+#weatherdescripcion {
+	border-left: 1px solid orange;
+	color: green;
+}
+#general {
+	margin-top: 10%;
+}

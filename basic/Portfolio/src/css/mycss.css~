@@ -1,0 +1,35 @@
+li {
+  font-size: 1.2em;
+}
+a, a:hover{
+  text-decoration: none;
+}
+
+.border-container {
+  width: 80%;
+  background-color: azure;
+  border: 1px solid green;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px black;
+}
+.border-row-img {
+  padding-top: 15px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px black;
+  text-align: center;
+  font-family: Monospace;
+  font-weight: bold;
+}
+.border-row-ul{
+  padding: 20px 0px;
+  
+}
+
+.p-centered {
+  font-size: 1.4em;
+  text-align:center;
+}
+
+.justifytext {
+  text-align: justify;
+}

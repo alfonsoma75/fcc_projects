@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Wikipedia Viewer</title>
+<link rel="stylesheet" href="src/css/bootstrap.min.css" />
+<link rel="stylesheet" href="src/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<link rel="stylesheet" href="src/css/mycss.css" />
+<script src="src/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script src="src/js/myjs.js"></script>
+
+
+</head>
+<body>
+<div class="container">
+	<div class="row rowmiddle">
+		<div class="col-xs-8 col-xs-offset-2 botones">
+			<p class="inline"><a class="btn btn-warning botonrandom" data-fancybox data-type="iframe" data-src="https://es.wikipedia.org/wiki/Special:Random" href="javascript:;" >Random Wiki</a></p>
+			<input type="text" id="texto"  />
+			<button class="btn btn-primary" id="buscar" >Buscar</button>
+		</div>
+	</div>
+	<div class="row resultado">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div id="resultado" hidden></div>
+		</div>
+	</div>
+	
+	<div id="footer">
+		<footer><p>&copy; != 2017</p></footer>
+	</div>
+</div>
+</body>
+</html>

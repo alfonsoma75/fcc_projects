@@ -1,0 +1,144 @@
+var mycity;
+var celsius=false;
+var temperatura = [];
+var latlong = "";
+
+$(document).ready(function() {
+	$("body").hide();
+
+	// intentar geolocation
+	if (navigator.geolocation) {
+		
+			navigator.geolocation.getCurrentPosition(function (posicion) {
+				
+			var geocoder = new google.maps.Geocoder();
+			var mylocation = new google.maps.LatLng(posicion.coords.latitude, posicion.coords.longitude);
+			latlong = posicion.coords.latitude + "," + posicion.coords.longitude;
+			
+			geocoder.geocode({ 'latLng': mylocation }, function(results, status) {
+				var myobj = new Object;
+				myobj.city = results[0].address_components[2].long_name;
+				myobj.region = results[0].address_components[3].long_name;
+				myobj.country = results[0].address_components[5].long_name;
+				myobj.loc = latlong;
+				resuelveIP(myobj);
+			});
+	
+		}, 
+		function (error) { // si hay error de geolocator intentar por IP
+			porIP();
+		}, {timeout: 30000}
+		);	
+	}else {porIP();} // si no soporta geolocator, intentar por IP
+	$(".cof").on("click", changeCOF);
+
+});
+
+// deteccion por ip
+function porIP() {
+	$.get("https://ipinfo.io", resuelveIP, "jsonp");
+}
+
+// consulta web tiempo
+function resuelveIP(response) {
+	var html = "https://api.darksky.net/forecast/"
+	var key = "d8f042136ccb0145a84c53cf411d525e";
+   var myurl = html + key +"/"+ response.loc + "?lang=es&units=si";
+
+  	mycity = response.city + ", " + response.region + ", " +response.country;
+   $.get(myurl, correcto, "jsonp").fail(error);
+}
+
+// Al recuperar datos correctamente
+function correcto(datos) {
+	var imageBackground = "url(" + dinamicBackground(datos.currently.icon) +")";
+	
+	myicon = "wi wi-forecast-io-" + datos.currently.icon;
+	$(".back").css("background-image", imageBackground);
+	$(".back").css("visibility", "visible");
+
+	$("#city").html("El tiempo en <span>" + mycity + "</span>");
+	$("i").attr("class", myicon);
+	$("#general").html(datos.currently.summary);
+	$("body").fadeIn(1000);
+	temperatura.push(Math.floor(datos.currently.temperature));
+	temperatura.push(Math.floor(datos.currently.apparentTemperature));
+	temperatura.push(Math.floor(datos.currently.humidity*100));
+
+	changeCOF();
+
+}
+
+// error al recuperar datos
+function error(xhr, ajaxOptions, thrownError) {
+	alert("Error: " + thrownError);
+}
+
+// centigrados a farenheit y viceversa
+function changeCOF() {
+	var grados, tempCF, tempsens;	
+	if (celsius==true) {	
+		tempCF = temperatura[0] * 1.800 + 32
+		tempsens = temperatura[1] * 1.800 + 32
+		grados = "F";
+		celsius = false;	
+	}else {
+		tempCF = temperatura[0];
+		tempsens = temperatura[1];
+		grados = "C";
+		celsius = true;	
+	}
+	$("#descripcion").html("Temperatura: " + tempCF + "º");
+	$(".cof").html("<a href='#'>" + grados + "</a>");
+	$("#sensacion").html("Sensación térmica: " + tempsens + "º");
+	$(".cof").html("<a href='#'>" + grados + "</a>");
+	$("#humedad").html("Humedad: " + temperatura[2] + "%");
+	
+
+}
+
+// Background dinamico
+function dinamicBackground(datos) {
+	var retorno = "";	
+	var dia;
+	var hora = new Date().getHours();
+	var myclave;
+	var claves = ["clear", "sun", "rain", "wind", "storm", "snow", "fog", "cloud"];
+	var mydato = {
+		"clear": "http://pre00.deviantart.net/eaee/th/pre/i/2013/159/0/8/clear_day_by_thorero-d68c8ic.jpg",
+		"sun": "https://wallpaperscraft.com/image/sun_light_beams_meadow_glade_summer_day_53997_3840x2400.jpg",
+		"rain": "http://www.whatawaytogomovie.com/wp-content/uploads/2013/04/rain-earth-day.jpg",
+		"wind": "http://www.sturdyforcommonthings.com/wp-content/uploads/2013/03/wind_blowing.jpg",
+		"storm": "http://www.nbnweathershots.com.au/sites/default/files/Flyeroz/ANZAC-Day-stormnet.jpg",
+		"snow": "http://kellyepperson.com/wp-content/uploads/2016/02/snow-day.jpg",
+		"fog": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Shriram_Samruddhi_Seen_from_Sumadhura_Sandoval_third_Floor_on_a_Foggy_day_2-19-2012_7-35-16_AM.JPG",
+		"cloud": "http://www.nbnweathershots.com.au/sites/default/files/GLEN HENRY PHOTOGRAPHICART/Shelf cloud NBN.jpg",
+		"night": {
+			"clear": "https://sanguinaryblade.files.wordpress.com/2013/03/clear-night.jpg",
+			"rain": "http://wallpaper.pickywallpapers.com/2560x1440/night-rain-blurry-view.jpg",
+			"wind": "https://jejutourism.files.wordpress.com/2017/03/2-2.png",
+			"storm": "http://www.wallpaperup.com/uploads/wallpapers/2015/03/06/632942/514e6e17404855aa60db91241e2b9753.jpg",
+			"snow": "https://cdn.wallpapershdin.com/walls/winter-snow-night-bench-l-posts-wide.jpg",
+			"fog": "https://s-media-cache-ak0.pinimg.com/originals/48/c6/67/48c667cb5c9d1446801101136c1031cc.jpg",
+			"cloud": "https://snapshotsbykats.files.wordpress.com/2011/12/023.jpg"
+			}		
+		};
+	datos = datos.split("-");
+	myclave = claves[claves.indexOf(datos[0])];
+	hora = (hora + 24) % 24;
+	alert(hora);
+	if (myclave == undefined) {	
+		// si no se encuentra la clave, imagen generica
+		retorno = "http://www.visitcalifornia.com/sites/default/files/styles/welcome_image/public/arroyo%20burro%20beach%20santa%20barbara%20damian%20gadal%201280x642.jpg";
+	}else if (hora >= 22 || hora <= 8) {
+			// Es de noche	
+
+			retorno = mydato["night"][myclave];
+		}else {
+			//es de dia	
+			retorno = mydato[myclave];
+	}
+return retorno;
+}
+
+function pp() {}

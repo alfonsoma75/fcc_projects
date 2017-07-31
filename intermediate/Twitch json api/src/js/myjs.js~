@@ -1,0 +1,64 @@
+$(document).ready(function() {
+
+	var canales = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
+
+	$("#offline").on("click", myoffline);
+	$("#online").on("click", myonline);
+	$("#all").on("click", myall);
+	canales.forEach(recuperadatos);
+
+
+});
+
+function recuperadatos(currentValue, index, arr) {
+	// api para conocer el estado del stream
+	$.getJSON(myurl("streams", currentValue), function(data) {	
+		var estado = "";
+		var descripcion = "";
+		
+		// Si el estado es null = offline, si es un objeto esta online
+		if (data.stream === null) {  			  				
+  			estado = "OffLine";  	
+  		}else {	
+			estado = "OnLine";
+			descripcion = data.stream.channel.status;
+			//descripcion = 	data.stream.channel.status;	
+			
+  		}
+		// api para conocer los datos del canal. Usuario, logo, web ....
+		$.getJSON(myurl("channels", currentValue), function(data) {		
+				alert(JSON.stringify(data.status));
+			if (data.status === 404) {
+				$("#fotos").append("<div class='row mylinea'><div class='col-xs-12 cerrado'><strong>This account was closed.</strong></div></div>");
+			}else {
+				$("#fotos").append("<a href='https://www.twitch.tv/" + 
+					estado.toLowerCase() + "' target='_blanck'><div class='row mylinea " + 
+					estado.toLowerCase() + "'><div class='col-xs-4 imagen'><img src='" + 
+					data.logo + "' /></div><div class='col-xs-4 texto'>" +
+					data.display_name + "<p class='descripcion'>" + descripcion +"</p></div><div class='col-xs-4 my" + estado.toLowerCase() + "'>" +
+					estado + "</div></div></a>");
+			}
+		}).fail(function() {alert("fallo");});
+	}).fail(function() {alert("fallo")});
+}
+
+
+function myurl(tipo, dato) {
+	return "https://wind-bow.gomix.me/twitch-api/" + tipo +"/" + dato + "?callback=?";
+
+}
+
+function myoffline() {
+	$(".online").attr("hidden", "hidden");
+	$(".offline").removeAttr("hidden");
+}
+
+function myonline() {
+	$(".offline").attr("hidden", "hidden");
+	$(".online").removeAttr("hidden");
+}
+
+function myall() {
+	$(".offline").removeAttr("hidden");
+	$(".online").removeAttr("hidden");
+}

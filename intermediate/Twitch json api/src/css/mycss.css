@@ -1,0 +1,55 @@
+img {
+	width: 50px;
+	border-radius: 50%;
+}
+ul {
+	list-style-type: none;
+}
+.mylinea {
+	height: 10%;
+	border-top: 1px solid blue;
+	vertical-align: middle;
+
+}
+
+a, a:hover, a:active, a:visited {
+	text-decoration: none;
+}
+
+.texto {
+	padding-top: 3%;
+	color: darkblue;
+}
+
+.imagen {
+	padding-top: 1%;
+}
+
+.cabecera {
+	height: 10%;
+	background-color: azure;
+}
+
+.descripcion {
+	color: grey;
+	font-size: 0.8em;
+}
+
+.cerrado {
+	text-align: center;
+	color: red;
+	font-size: 1.5em;
+	padding-top: 3%
+}
+
+.myonline {
+	padding-top: 3%;
+	color: green;
+	text-align: right;
+}
+
+.myoffline {
+	padding-top: 3%;
+	color: red;
+	text-align: right;
+}

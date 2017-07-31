@@ -1,0 +1,47 @@
+$(document).ready(function() {
+	$("#texto").val("").focus().on("keyup", function(e) {
+		$("#texto").css("border-color", "blue");
+		if (e.keyCode == 13) {busqueda();}
+
+
+	$("#buscar").on("click", busqueda);
+	});
+}
+
+function busqueda() {
+	var texto = $("#texto").val();
+	var cadena = "https://es.wikipedia.org/w/api.php?action=query&format=json&gsrlimit=5&prop=pageimages|extracts&explaintext&exintro&exlimit=5&exchars=200&plnamespace=*&plimit=5&generator=search&origin=*&gsrsearch="+texto;
+	
+	if (texto !== "") {
+		$(".botones").animate({top: "5px"}, 800);
+		$.getJSON(cadena, correcto).fail(error);	
+			$("#resultado").fadeOut()
+	}else {
+		$("#texto").css("border-color","red");	
+	}
+
+}
+
+
+// mostrar los datos de la busqueda
+function correcto(datos) {
+	var cadena = "";
+	var myurl = "https://es.wikipedia.org/?curid="; // ir a la pagina introduciendo id, ojo idioma ES
+	
+	if (datos.query === undefined) {
+		cadena = "<p class='nodatos'><strong>No hay resultados para su busqueda</strong></p>";
+	}else {
+		for (key in datos.query.pages) {
+		cadena += "<ul><a data-fancybox data-type='iframe' data-src='" + myurl + datos.query.pages[key].pageid + "' href='javascript:;' ";
+			cadena += "<li class='titulo'><strong>" + datos.query.pages[key].title + "</strong></li>";
+			cadena += "<li class='estracto'>" + datos.query.pages[key].extract + "</li>";
+		cadena += "</a></ul>";
+		}
+	}
+		$("#resultado").delay(300).html(cadena).fadeIn(800);
+	
+}
+
+function error(xhr, ajaxOptions, thrownError) {
+	alert("Error: " + thrownError);
+}
