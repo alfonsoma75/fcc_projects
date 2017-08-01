@@ -99,6 +99,7 @@ function reset() {
       ocho: "",
       nueve: ""
    };
+   
    // mostrar puntuación
    $("#playerone").html(jugadores["jugador1"]["puntos"]);
    $("#playertwo").html(jugadores["jugador2"]["puntos"]);
