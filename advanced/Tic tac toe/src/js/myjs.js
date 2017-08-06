@@ -18,10 +18,13 @@ var intercambio = {};
 // Jugador actual en la partida
 var actual = "";
 
+// controla empate
+var empate;
+
 $("document").ready(function() {
    
    // Llamada a iniciar variables
-   reset();
+   reset(true);
    
    // control de pulsacion de inicio de partida
    $("#play").on("click", function(e) {
@@ -50,7 +53,14 @@ $("document").ready(function() {
          jugadores["jugador2"]["ficha"] = "X";
       }
       $("#ficha").hide(500);
-      $(".tablero").fadeIn(500);      
+      $("#cuadricula").fadeIn(500);
+      $("#juega").html(jugadores[actual]["nombre"]).fadeIn(500);
+   });
+   
+   // Boton de reinicio del juego
+   $("#resetea").on("click", function() {
+      $("#jugadores, #ficha").hide();
+      reset(true);
    });
    
    // Control de clicks en el tablero
@@ -59,33 +69,29 @@ $("document").ready(function() {
       // Este if controla que no se pueda pulsar nada si está jugando la cpu
       if ((e.button === 0 && jugadores[actual]["nombre"] !== "cpu") || (jugadores[actual]["nombre"] === "cpu" && typeof e.button === "undefined")) {
          
-         $(this).html(jugadores[actual]["ficha"]);
-         intercambio[this.id] = jugadores[actual]["ficha"];
+         // Se pone la ficha siempre que no haya una ya puesta
+         if ($(this).html() === "") {
+            $(this).html(jugadores[actual]["ficha"]);
+            intercambio[this.id] = jugadores[actual]["ficha"];
 
-         // Se revisa si se ha terminado el juego
-         if (comprueba(intercambio)) {
+            // Se revisa si se ha terminado el juego
+            if (comprueba(intercambio)) {
 
-            // revisar forma en la que ha terminado
-            //fin();
-            // Se reinicia la partida
-            reset(); // controlar puntuacion
-         }else {
-            // si la partida continua se cambia de jugador
-            cambiarjugador();
+               // Revancha o reinicio
+               fin();
+            }else {
+
+               // si la partida continua se cambia de jugador
+               cambiarjugador();
+            }
          }
       }
    });
    
 });
-function reset() {
+function reset(hardreset) {
    
-   // inicializar variables
-   jugadores["jugador1"]["ficha"] = ""
-   jugadores["jugador2"]["nombre"] = ""
-   jugadores["jugador2"]["ficha"] = ""
 
-   // Siempre empieza jugador1
-   actual = "jugador1";
    
    // Vaciamos el controlador de las fichas del tablero
    intercambio = {
@@ -100,26 +106,50 @@ function reset() {
       nueve: ""
    };
    
-   // mostrar puntuación
-   $("#playerone").html(jugadores["jugador1"]["puntos"]);
-   $("#playertwo").html(jugadores["jugador2"]["puntos"]);
-   
    // ocultar el tablero si es reset de partida
-   $(".tablero").hide();
-   
+   $("#cuadricula").hide();
+     
    // Vaciar tablero
-   $("#uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve").html("");
+   $("#uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve").html("").css("background-color", "transparent");
    
-   // mostrar presentacion
-   $("#presentacion").fadeIn(1000);
+   // Si no se hace reset se continua con nueva partida
+   if (hardreset) {
+      jugadores["jugador1"]["ficha"] = "";
+      jugadores["jugador2"]["nombre"] = "";
+         // inicializar variables
+      jugadores["jugador1"]["ficha"] = "";
+      jugadores["jugador2"]["nombre"] = "";
+      jugadores["jugador2"]["ficha"] = "";
+      jugadores["jugador1"]["puntos"] = 0;
+      jugadores["jugador2"]["puntos"] = 0;
+
+      // Siempre empieza jugador1
+      actual = "jugador1";
+      
+      // mostrar presentacion
+      $("#presentacion").fadeIn(1000);
+   }else {
+      $("#cuadricula").fadeIn(500);
+   }
    
+   // mostrar puntuación
+   $("#playerone p").html(jugadores["jugador1"]["puntos"]);
+   $("#playertwo p").html(jugadores["jugador2"]["puntos"]);
    
+   // Ocultar de inicio quien juega
+   $("#juega").hide();
+   
+   // inicia empate en falso
+   empate = false;
 }
 
 
 
 function cambiarjugador() {
 
+   // oculta el jugador anterior
+   $("#juega").hide(500);
+   
    // revisar si el jugador es el 2 o la cpu
    // Cambia de jugador.
    if (actual === "jugador1") {
@@ -129,9 +159,11 @@ function cambiarjugador() {
    }
    if (jugadores[actual]["nombre"] === "cpu") {
       juegacpu();
-
-      
+    
    }
+   setTimeout(function() {     
+      $("#juega").html(jugadores[actual]["nombre"]).fadeIn(500);
+   }, 500);
 }
 
 function juegacpu() {   
@@ -176,35 +208,61 @@ function comprueba(intercambio) {
       return true
    }
    if (array.indexOf("cuatro")>=0 && array.indexOf("cinco")>=0 && array.indexOf("seis")>=0) {
+      $("#cuatro, #cinco, #seis").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
    if (array.indexOf("siete")>=0 && array.indexOf("ocho")>=0 && array.indexOf("nueve")>=0) {
+      $("#siete, #ocho, #nueve").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
    
    // vertical
    if (array.indexOf("uno")>=0 && array.indexOf("cuatro")>=0 && array.indexOf("siete")>=0) {
+      $("#uno, #cuatro, #siete").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
    if (array.indexOf("dos")>=0 && array.indexOf("cinco")>=0 && array.indexOf("ocho")>=0) {
+      $("#dos, #cinco, #ocho").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
    if (array.indexOf("tres")>=0 && array.indexOf("seis")>=0 && array.indexOf("nueve")>=0) {
+      $("#tres, #seis, #nueve").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
    
    // Diagonal
    if (array.indexOf("uno")>=0 && array.indexOf("cinco")>=0 && array.indexOf("nueve")>=0) {
+      $("#uno, #cinco, #nueve").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
    if (array.indexOf("tres")>=0 && array.indexOf("cinco")>=0 && array.indexOf("siete")>=0) {
+      $("#tres, #cinco, #siete").css("background-color", "blue");
+      jugadores[actual]["puntos"] += 1;
       return true
    }
-   // Si no hay ganador y el tablero está completo finalizar
+   // Si no hay ganador y el tablero está completo finalizar con empate
    if (completo.length === 0) {
+      empate = true;
       return true;
    }
    // si el contador es igual a la longitud del objeto y despues de comprobar la partida se acaba
    
    return false
+}
+
+function fin() {
+   if (empate) {
+      alert("empate");
+   }else {
+      alert("Gana " + jugadores[actual]["nombre"]);
+   }
+   setTimeout(function() {
+       reset(false);
+   }, 1000);
 }
