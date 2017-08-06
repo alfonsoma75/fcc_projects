@@ -1,0 +1,88 @@
+@font-face {
+	font-family: lcd;
+	src: url(../font/digital-7_mono.ttf);
+	font-weight: bold;
+}
+body {
+	background-color: Azure;
+}
+
+span {
+	font-family: lcd;
+	text-align: center;
+}
+
+footer {
+	position: absolute;
+	bottom: 2%;
+	right: 5%;
+	color: red;
+}
+
+.contenedor {
+	border: 1px solid Beige;
+	border-radius: 10px;
+	box-shadow: 5px 5px 0px darkgrey;
+	padding-top:  4%;
+	padding-bottom: 2%;
+	margin-top: 15%;
+	background-color: white;
+}
+
+.contenido {
+	margin-left: 4%;
+}
+
+.teclas {
+	text-align: center;
+	border: 1px solid black;
+	box-shadow: 0px 3px 0px grey;
+	border-radius: 5px;
+	padding: 2%;
+	background-color: grey;
+	color: white;
+}
+.teclas:active {
+	transform: translateY(2px);
+	box-shadow: 0px 0px 0px grey;
+}
+
+.separacion {
+	border: 0px solid black;
+	padding: 2%;
+}
+.separator {
+	padding: 2%;
+}
+
+.pantalla {
+	font-family: lcd;
+	border-left: 1px solid darkgreen;
+	border-right: 1px solid darkgreen;
+	background-color: lightgreen;
+	text-align: right;
+
+}
+
+
+
+#total {
+	font-size: 1.5em;
+	color: darkgrey;
+	border-bottom: 1px solid darkgreen;
+	border-top: 0.5px solid lightgrey;
+	border-radius: 0px 0px 5px 5px;
+}
+
+#datos {
+	font-size: 3.5em;
+	border-top: 1px solid darkgreen;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#igual {
+	position: absolute;
+	height: 22%;
+	right: 8%;
+}
+
