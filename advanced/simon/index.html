@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>Simon</title>
     <link rel="stylesheet" href="src/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/mycss.css" />
     <script src="src/js/jquery.min.js"></script>
@@ -14,15 +14,21 @@
 <div class="base">
    <div class="interior" >
       <div class="fila">
-         <div class="a-i enlinea push verde" id="3"></div>
-         <div class="a-d enlinea push rojo " id="2"></div>
+         <div class="a-i enlinea push verde noclick" id="3"></div>
+         <div class="a-d enlinea push rojo noclick" id="2"></div>
       </div>
       <div class="fila">
-         <div class="b-i enlinea push amarillo " id="1"></div>
-         <div class="b-d enlinea push azul " id="0"></div>
+         <div class="b-i enlinea push amarillo noclick" id="1"></div>
+         <div class="b-d enlinea push azul noclick" id="0"></div>
       </div>
       <div class="central"></div>
    </div>
-</div>    
+</div>  
+<div >
+   <button type="button" id="onoff">On</button>
+   <button type="button" class="boton" id="start" disabled>Start</button>
+   <button type="button" id="strict" disabled>Strict Mode</button>
+   <p id="movimientos"></p>
+</div>
 </body>
 </html>

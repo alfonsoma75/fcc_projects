@@ -36,28 +36,47 @@
    top: 25px;
 }
 
-.fila {
+/*fila {
    border-bottom: -4px;
-}
+}*/
 
 .rojo {
    background-color: darkred;
 }
+.rojo:active {
+   background-color: red;
+}
 .amarillo {
    background-color: darkgoldenrod;
+}
+.amarillo:active {
+   background-color: yellow;
 }
 .verde {
    background-color: darkgreen;
 }
+.verde:active {
+   background-color: limegreen;
+}
 .azul {
    background-color: darkblue;
+}
+.azul:active {
+   background-color: blue;
 }
 
 .enlinea {
    display: inline-block;
 }
 
-.central {
+.noclick {
+   pointer-events: none;
+}
+.siclick {
+   pointer-events: auto;
+}
+.boton:disabled {color: darkgray; cursor: not-allowed;}
+/*.central {
    width: 220px;
    height: 220px;
    position: absolute;
@@ -67,4 +86,4 @@
    margin: -122px 0 0  -122px;
    background-color:white;
   border: 12px solid saddlebrown;
-}
+}*/
