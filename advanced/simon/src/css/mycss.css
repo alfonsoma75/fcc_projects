@@ -43,25 +43,25 @@
 .rojo {
    background-color: darkred;
 }
-.rojo:active {
+.rojo:active, .rojoclick {
    background-color: red;
 }
 .amarillo {
    background-color: darkgoldenrod;
 }
-.amarillo:active {
+.amarillo:active, .amarilloclick{
    background-color: yellow;
 }
 .verde {
    background-color: darkgreen;
 }
-.verde:active {
+.verde:active, .verdeclick {
    background-color: limegreen;
 }
 .azul {
    background-color: darkblue;
 }
-.azul:active {
+.azul:active, .azulclick {
    background-color: blue;
 }
 
