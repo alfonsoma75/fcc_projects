@@ -46,53 +46,63 @@ function play() {
    if ($("#start").text() === "Start") {
       
       contenido = "Stop";
-      //while (cuenta < 20) {
+     
         
          if (jugador === false) {
-            jugador = true;
-           // cuenta ++;
-                     
-           cpu(texto, number, i, colores, cuenta);
-              //$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
-           }
-
-       
-
-            $("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", function() {
-                  console.log(this.id);
-               });
+            
+            jugador = true;                     
+            cpu(texto, number, i, colores, cuenta, 0);
+            
+         }else {
+            
+            // while jugada < len jugada
+            $("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
+            
+         }
    }else {
       
       contenido = "Start";
       $("#0, #1, #2, #3").removeClass("siclick").addClass("noclick").off("click");
       $("#movimientos").text("--");
    }
-   $("#start").html(contenido);
-    console.log(jugada);
+   
 }
 
-function cpu(texto, number, i, colores, cuenta) {
-   if (cuenta < 5) {
-   texto = "";
+function cpu(texto, number, i, colores, cuenta, contador) {
+   if (contador < cuenta) {
+      texto = "";
 
-   number = Math.floor(Math.random() * 4); // color de jugada
+      number = Math.floor(Math.random() * 4); // color de jugada
+
+      jugada.push(number); // guardamos jugada
+
+      // si la jugada es menor de 10 agregar un cero
+      if (cuenta < 10) {
+         texto = "0";
+      }
+
+      $("#movimientos").text(texto + cuenta.toString());
+      // mostramos la pulsacion del color
+         setTimeout(function() {
+
+      $("#" + number.toString()).removeClass(colores[number]).addClass(colores[number]+"click");
+         }, 1000);
+
+      setTimeout(function() {$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);}, 2000);
+      //$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
+      setTimeout(cpu, 2000, texto, number, i, colores, cuenta+1);
+   }
+}
+
+function juega() {
    
-   jugada.push(number); // guardamos jugada
-
-   // si la jugada es menor de 10 agregar un cero
-   if (cuenta < 10) {
-      texto = "0";
-   }
-
-   $("#movimientos").text(texto + cuenta.toString());
-   // mostramos la pulsacion del color
-      setTimeout(function() {
+   if (this.id === jugada[0].toString()) {
+      console.log("correcto");
+      jugador = false;
+      cuenta ++;
+      $("#0, #1, #2, #3").off("click");
+   }else {
+      console.log("Fallo");
+   }           
          
-   $("#" + number.toString()).removeClass(colores[number]).addClass(colores[number]+"click");
-      }, 1000);
-
-setTimeout(function() {$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);}, 2000);
-   //$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
-  setTimeout(cpu, 2000, texto, number, i, colores, cuenta+1);
-   }
 }

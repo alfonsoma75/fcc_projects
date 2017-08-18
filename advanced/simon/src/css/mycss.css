@@ -1,3 +1,42 @@
+/* Basic Reset */
+html, body, div, span, applet, object, iframe,
+ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ a, abbr, acronym, address, big, cite, code,
+ del, dfn, em, img, ins, kbd, q, s, samp,
+ small, strike, strong, sub, sup, tt, var,
+ b, u, i, center,
+ dl, dt, dd, ol, ul, li,
+ fieldset, form, label, legend,
+ table, caption, tbody, tfoot, thead, tr, th, td,
+ article, aside, canvas, details, embed, 
+ figure, figcaption, footer, header, hgroup, 
+ menu, nav, output, ruby, section, summary,
+ time, mark, audio, video {
+ 	margin: 0;
+ 	padding: 0;
+ 	border: 0;
+ 	font-size: 100%;
+ 	font: inherit;
+ 	vertical-align: baseline;
+     
+        /* Disable mouse selection */
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.push {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color : darkgray;
+  border: 12px solid saddlebrown;
+}
+
 .a-i {
    border-top-left-radius: 100%;
 }
@@ -13,17 +52,10 @@
 .b-d {
    border-bottom-right-radius: 100%;
 }
-.push{
-  position: relative;
-  width: 200px;
-  height: 200px;
-  background-color : darkgray;
-  border: 12px solid saddlebrown;
-}
 .base {
    background-color: saddlebrown;
-   width: 472px;
-   height: 472px;
+   width: 435px;
+   height: 435px;
    border-radius: 100%;
    position: relative;
    text-align: center;
@@ -33,12 +65,16 @@
 }
 .interior {
    position: relative;
-   top: 25px;
+   top: 12px;
 }
 
-/*fila {
-   border-bottom: -4px;
-}*/
+.cuenta {
+    border: 1px solid grey;
+    color: red;
+    background-color: darkred;
+    width: 20%;
+    border-radius: 20%;
+}
 
 .rojo {
    background-color: darkred;
@@ -76,14 +112,31 @@
    pointer-events: auto;
 }
 .boton:disabled {color: darkgray; cursor: not-allowed;}
-/*.central {
+
+.central {
    width: 220px;
    height: 220px;
    position: absolute;
     border-radius:100%;
    top:50%;
    left:50%;
-   margin: -122px 0 0  -122px;
+   margin: -112px 0 0  -112px;
    background-color:white;
   border: 12px solid saddlebrown;
-}*/
+}
+
+.switch {
+    border: 2px solid grey;
+    background-color:aqua;
+    border-radius: 10%;
+    position: relative;
+}
+
+.left {
+    left: 2px;
+}
+
+.nombre  {
+    
+    margin-top: 35px;
+}
