@@ -2,73 +2,77 @@
 
 $("document").ready(function() {
   
-   $("#onoff").on("click", inicia);
+   $("#activa").on("click", inicia);
 });
 
 //activa o desactiva el juego. NO INICIA PARTIDA.
 function inicia() {
    
-   var contenido = "";
-   var arranque = "";
    
    // Cambiamos texto de boton en funcion si esta on/off
-   if ($("#onoff").text() === "On") {
+   if ($("#onoff").hasClass("on")) {
       
-      contenido = "Off";
-      arranque = "--";
-      // Habilitamos el boton
-      $("#start").removeAttr("disabled").on("click", play);
+	  // mueve el boton a off
+      $("#onoff").removeClass("on").addClass("off");
+	  // Cambia la clase cuenta para desactivarla
+	  $("#movimiento").removeClass("cuentaon").addClass("cuentaoff");
+    
+      // Deshabilitamos el boton
+      $("#start").off("click");
    }else {
-      if ($("#start").text("Stop")) {
+	   // mueve el boton a on
+      $("#onoff").removeClass("off").addClass("on");
+	   // Cambia clase cuenta para activar
+	  $("#movimiento").removeClass("cuentaoff").addClass("cuentaon");
+      /*if ($("#start").text("Stop")) {
          $("#start").click();
-      }
-      contenido = "On";
-      arranque = "";
-      $("#start").attr("disabled", "disabled").off("click");
+      }*/
+            // Habilitamos el boton
+      $("#start").on("click", play);
    }
    
-   $("#onoff").html(contenido);
-   $("#movimientos").html(arranque);
+   /*$("#onoff").html(contenido);*/
+   $("#movimiento").html("--");
 }
 
 // inicia partida
 function play() {
    
-   var contenido = "";
-   var jugador = false;
-   jugada = [];
-   cuenta = 1;
-   var colores = ["azul", "amarillo", "rojo", "verde"];
-   var number;
-   var texto;
-   var i = 0;
-   
-   if ($("#start").text() === "Start") {
-      
-      contenido = "Stop";
-     
-        
-         if (jugador === false) {
-            
-            jugador = true;                     
-            cpu(texto, number, i, colores, cuenta, 0);
-            
-         }else {
-            
-            // while jugada < len jugada
-            $("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
-            
-         }
-   }else {
-      
-      contenido = "Start";
-      $("#0, #1, #2, #3").removeClass("siclick").addClass("noclick").off("click");
-      $("#movimientos").text("--");
-   }
+	var fin = 26;
+	var jugador = false;
+	jugar(fin, 0);
+}
+
+function jugar(fin, cont, jugador) {
+	
+	if (cont < fin) {
+		
+		jugada = [];
+		cuenta = 1;
+		var colores = ["azul", "amarillo", "rojo", "verde"];
+		var number;
+		var texto;
+		var i = 0;
+
+		$("#movimiento").text("--");
+
+		if (jugador != true) {
+                    
+			cpu(texto, number, i, colores, cuenta, 0, fin, cont);
+			
+		}else {
+
+			// while jugada < len jugada
+			//jugador(texto, number, i, colores, cuenta, 0);
+			$("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
+
+		}
+	}
+	//jugar(fin, cont);
    
 }
 
-function cpu(texto, number, i, colores, cuenta, contador) {
+function cpu(texto, number, i, colores, cuenta, contador, fin, cont) {
    if (contador < cuenta) {
       texto = "";
 
@@ -81,28 +85,48 @@ function cpu(texto, number, i, colores, cuenta, contador) {
          texto = "0";
       }
 
-      $("#movimientos").text(texto + cuenta.toString());
       // mostramos la pulsacion del color
-         setTimeout(function() {
+	 setTimeout(function() {
 
       $("#" + number.toString()).removeClass(colores[number]).addClass(colores[number]+"click");
-         }, 1000);
+		 $("#movimiento").text(texto + cuenta.toString());
+	 }, 1000);
 
-      setTimeout(function() {$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);}, 2000);
+      setTimeout(function() {$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
+							}, 2000);
       //$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
-      setTimeout(cpu, 2000, texto, number, i, colores, cuenta+1);
+      setTimeout(cpu, 2000, texto, number, i, colores, cuenta, contador+1, fin, cont);
+      
+   }else {
+	   // Si ya se han mostrado la cantidad total de colores, se vuelve a llamar a la funcion
+	   // enviando true para pasar al jugador
+	   setTimeout(jugar, 3000, fin, cont, true);
    }
 }
 
+/*function jugador(texto, number, i, colores, cuenta, contador) {
+	if (contador < cuenta) {
+		setTimeout(function() {
+			$("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
+		}, 3000);
+	}
+}*/
+
 function juega() {
    
-   if (this.id === jugada[0].toString()) {
+	
+	// si las jugadas son inferiores a las totales
+   if (this.id === jugada[0].toString()) { // mientras no se falle en modo estricto
       console.log("correcto");
       jugador = false;
       cuenta ++;
       $("#0, #1, #2, #3").off("click");
    }else {
       console.log("Fallo");
+	   // si es modo estricto empezar de nuevo
+		// si es fallo sin esttricto el contador de aciertos a cero
    }           
-         
+    // Sino se llama a la funcion jugar con el usuario en falso y cont +1
+	
+	
 }
