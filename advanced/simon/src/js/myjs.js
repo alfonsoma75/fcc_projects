@@ -19,6 +19,8 @@ function inicia() {
     
       // Deshabilitamos el boton
       $("#start").off("click");
+	   
+
    }else {
 	   // mueve el boton a on
       $("#onoff").removeClass("off").addClass("on");
@@ -38,33 +40,52 @@ function inicia() {
 // inicia partida
 function play() {
    
-	var fin = 26;
+	var fin = 25;
 	var jugador = false;
-	jugar(fin, 0);
+	error = false;
+	jugada = [];
+	cuenta = 1;
+	jugar(fin, 0, jugador);
 }
 
 function jugar(fin, cont, jugador) {
 	
-	if (cont < fin) {
+	if (cont <= fin) {
 		
-		jugada = [];
-		cuenta = 1;
+		
+		
 		var colores = ["azul", "amarillo", "rojo", "verde"];
 		var number;
 		var texto;
-		var i = 0;
+		//var i = 0;
 
-		$("#movimiento").text("--");
+		//$("#movimiento").text("--");
 
 		if (jugador != true) {
-                    
-			cpu(texto, number, i, colores, cuenta, 0, fin, cont);
+			if (error != true) {
+				number = Math.floor(Math.random() * 4); // color de jugada
+				jugada.push(number); // guardamos jugada
+				error = false;
+				
+			}
+
+			cpu(texto, colores, jugada.length, 0, fin, cont);
 			
+			 cuenta = 1;
 		}else {
 
 			// while jugada < len jugada
 			//jugador(texto, number, i, colores, cuenta, 0);
-			$("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
+		contador = jugada.length;
+		  
+			if (cuenta <= contador) {
+		
+				$("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
+			}else {
+				cuenta ++;
+		   		setTimeout(jugar, 1000, 26, cuenta, false);
+		
+			}
 
 		}
 	}
@@ -72,16 +93,16 @@ function jugar(fin, cont, jugador) {
    
 }
 
-function cpu(texto, number, i, colores, cuenta, contador, fin, cont) {
-   if (contador < cuenta) {
+function cpu(texto, colores, contador, cuenta) {
+   if (cuenta < contador) {
       texto = "";
+	   var number = jugada[cuenta];
+/*      number = Math.floor(Math.random() * 4); // color de jugada
 
-      number = Math.floor(Math.random() * 4); // color de jugada
-
-      jugada.push(number); // guardamos jugada
+      jugada.push(number); // guardamos jugada*/
 
       // si la jugada es menor de 10 agregar un cero
-      if (cuenta < 10) {
+      if (contador < 10) {
          texto = "0";
       }
 
@@ -89,44 +110,46 @@ function cpu(texto, number, i, colores, cuenta, contador, fin, cont) {
 	 setTimeout(function() {
 
       $("#" + number.toString()).removeClass(colores[number]).addClass(colores[number]+"click");
-		 $("#movimiento").text(texto + cuenta.toString());
+		 $("#movimiento").text(texto + contador.toString());
 	 }, 1000);
 
       setTimeout(function() {$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
 							}, 2000);
       //$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
-      setTimeout(cpu, 2000, texto, number, i, colores, cuenta, contador+1, fin, cont);
+      setTimeout(cpu, 2000, texto, colores, contador, cuenta+1);
       
    }else {
 	   // Si ya se han mostrado la cantidad total de colores, se vuelve a llamar a la funcion
 	   // enviando true para pasar al jugador
-	   setTimeout(jugar, 3000, fin, cont, true);
+	  
+	   setTimeout(jugar, 1000, 25, contador, true);
    }
 }
 
-/*function jugador(texto, number, i, colores, cuenta, contador) {
-	if (contador < cuenta) {
-		setTimeout(function() {
-			$("#0, #1, #2, #3").removeClass("noclick").addClass("siclick").on("click", juega);
-		}, 3000);
-	}
-}*/
 
 function juega() {
    
-	
+//	contador = jugada.length;
+		  $("#0, #1, #2, #3").off("click");
+//	if (cuenta <= contador) {
+
 	// si las jugadas son inferiores a las totales
-   if (this.id === jugada[0].toString()) { // mientras no se falle en modo estricto
-      console.log("correcto");
-      jugador = false;
-      cuenta ++;
-      $("#0, #1, #2, #3").off("click");
-   }else {
-      console.log("Fallo");
-	   // si es modo estricto empezar de nuevo
-		// si es fallo sin esttricto el contador de aciertos a cero
-   }           
-    // Sino se llama a la funcion jugar con el usuario en falso y cont +1
+	   if (this.id === jugada[cuenta-1].toString()) { // mientras no se falle en modo estricto
+		  console.log("correcto");
+		   cuenta ++;
+		  setTimeout(jugar, 1000, 26, cuenta, true);
+	   }else {
+		  console.log("Fallo");
+			   $("#movimiento").text("!!");
+		   setTimeout(function() {
+			   $("#movimiento").text("--");
+		   }, 1000);
+		   cuenta = 1;
+		   error = true;
+		  setTimeout(jugar, 1000, 26, 0, false);
+		   // si es modo estricto empezar de nuevo
+			// si es fallo sin esttricto el contador de aciertos a cero
+	   }   
 	
 	
 }
