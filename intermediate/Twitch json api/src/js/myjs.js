@@ -29,7 +29,10 @@ function recuperadatos(currentValue, index, arr) {
 		$.getJSON(myurl("channels", currentValue), function(data) {		
 				
 			if (data.status === 404) {
-				$("#fotos").append("<div class='row mylinea'><div class='col-xs-12 cerrado'><strong>This account was closed.</strong></div></div>");
+/*				$("#fotos").append("<div class='row mylinea'><div class='col-xs-12 cerrado'>"+currentValue+" <strong>This account was closed.</strong></div></div>");*/
+				$("#fotos").append("<div class='row mylinea " + 
+					estado.toLowerCase() + "'><div class='col-xs-4 imagen'></div><div class='col-xs-4 texto'>" +
+					currentValue + "</div><div class='col-xs-4 my" + estado.toLowerCase() + "'>CLOSED</div></div></a>");
 			}else {
 				$("#fotos").append("<a href='https://www.twitch.tv/" + 
 					estado.toLowerCase() + "' target='_blanck'><div class='row mylinea " + 
@@ -51,6 +54,7 @@ function myurl(tipo, dato) {
 function myoffline() {
 	$(".online").attr("hidden", "hidden");
 	$(".offline").removeAttr("hidden");
+	
 }
 
 function myonline() {
