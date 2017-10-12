@@ -1,9 +1,10 @@
-<html><!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Calculator</title>
+    <title>Pomodoro Clock</title>
     <link rel="stylesheet" href="src/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/mycss.css" />
     <script src="src/js/jquery.min.js"></script>
@@ -13,35 +14,37 @@
 <body>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3">
-			<div class="col-xs-1" id="minmin">-</div>
-			<div class="col-xs-2" id="descanso"></div>
-			<div class="col-xs-1" id="masmin">+</div>
-			<div class="col-xs-2"></div>
-			<div class="col-xs-1" id="minsec">-</div>
-			<div class="col-xs-2" id="tiempo"></div>
-			<div class="col-xs-1" id="massec">+</div>
+		<div class="col-xs-4 col-xs-offset-4">
+			<div class="col-xs-6">
+				<p class="pdescanso"><span id="minmin">- </span> <span id="descanso"></span> <span id="masmin"> +</span></p>
+			</div>
+			<div class="col-xs-6">
+				<p class="ptiempo"><span id="minsec">- </span> <span id="tiempo"></span> <span id="massec"> +</span></p>
+			</div>
+
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-4 col-xs-offset-4">
-			<div class="col-xs-1" id="min"></div>
-			<div class="col-xs-2">:</div>
-			<div class="col-xs-1" id="sec"></div>
+			<div>
+				<p id="cuenta" class="circulo p-centered"><span id="min"></span> : <span id="sec"></span></p>
+<!--				<div class="col-xs-1" id="min"></div>
+				<div class="col-xs-2">:</div>
+				<div class="col-xs-1" id="sec"></div>-->
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-4 mybtn">
+			<button id="boton" class="col-xs-6 btn-lg">Play</button>
+			<button id="reset" class="col-xs-6 btn-lg">Reset</button>
 		</div>
 	</div>
 </div>
-<!-- 
-   Se necesita un selector de numeros para descanso
-   y otro selector para tiempo descuento.
-   Una pantalla intermedia donde se muestra la cuenta atrás.
-   y una animacion de llenado o cambio de color en función del
-   tiempo transcurrido y restante.
--->
+		<footer><p>&copy; != 2017</p></footer>
 
 
-<button id="boton">Play</button>
-<button id="reset">Reset</button>
+
     
 </body>
 </html>

@@ -115,6 +115,10 @@ function descontar(minutos, segundos, pausa) {
 
 	// realizar el descuento y la animacion.
 	// regla de 3. minutos * 60 + segundos.
+	var regla = minutos * 60;
+	var total = 0;
+	var resto = 0;
+	var mycss = "";
 
 	myvar = setInterval(function() {
 
@@ -142,7 +146,14 @@ function descontar(minutos, segundos, pausa) {
 		// actualizamos la vista de minutos y segundos
 		$("#min").html(mcero+minutos);
 		$("#sec").html(scero+segundos);
-
+		
+		// Background progreso
+		total = (minutos * 60) + segundos;
+		total = (total * 100) / regla;
+		resto = 100 - total;
+		
+		mycss = "linear-gradient(cadetblue " + resto + "%, deepskyblue " + resto + "%)";
+		$(".circulo").css("background", mycss);
 		// si los minutos y segundos llegan a cero, detener el contador
 		if (minutos === 0 && segundos === 0) {
 			clearInterval(myvar);
@@ -155,7 +166,7 @@ function descontar(minutos, segundos, pausa) {
 			
 		}
 		
-	}, 50); // 1000 espera 1 segundo
+	}, 1000); // 1000 espera 1 segundo
 
 
 }
