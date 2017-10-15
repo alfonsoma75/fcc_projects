@@ -13,9 +13,13 @@
 <body>
 <div class="container">
    <div class="row" >
-      <div class="col-xs-4 col-xs-offset-4" >
-         <div id="juega" hidden></div>
-      </div>
+	   <div class="col-xs-6 col-xs-offset-3 jugadores">
+		  <div class="col-xs-8 juega" >
+			  <div id="juega" hidden></div>
+			  
+		  </div>
+		 <div class="col-xs-3 btn btn-default reinicio" id="resetea">Reiniciar</div>
+		</div>
    </div>
    <div class="row">
       <div class="col-xs-6 col-xs-offset-3 tablero">
@@ -73,15 +77,15 @@
       </div>
    </div>
    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3" id="puntuacion">
-         <div class="col-xs-3"><p class="tright">Jugador 1</p></div>
-         <div class="col-xs-2" id="playerone"><p class="tleft"></p></div>
-         <div class="col-xs-2 tcenter" id="resetea">reiniciar</div>
-         <div class="col-xs-2" id="playertwo"><p class="tright"></p></div>
-         <div class="col-xs-3 " ><p class="tleft">Jugador 2</p></div>
+      <div class="col-xs-6 col-xs-offset-4" id="puntuacion">
+         <div class="col-xs-4"><p>Jugador 1: <span id="playerone"></span></p></div>
+         <div class="col-xs-1"><p>|</p></div>
+		  
+         <div class="col-xs-4"><p><span id="playertwo"></span> :Jugador 2 </p></div>
          
       </div>
    </div>
+	<div id="ganador" class="enmedio" hidden></div>
 </div>    
 </body>
 </html>

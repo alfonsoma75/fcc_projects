@@ -133,8 +133,8 @@ function reset(hardreset) {
    }
    
    // mostrar puntuación
-   $("#playerone p").html(jugadores["jugador1"]["puntos"]);
-   $("#playertwo p").html(jugadores["jugador2"]["puntos"]);
+   $("#playerone").html(jugadores["jugador1"]["puntos"]);
+   $("#playertwo").html(jugadores["jugador2"]["puntos"]);
    
    // Ocultar de inicio quien juega
    $("#juega").hide();
@@ -258,11 +258,15 @@ function comprueba(intercambio) {
 
 function fin() {
    if (empate) {
-      alert("empate");
+      //alert("empate");
+	   $("#ganador").html("Empate").hide().removeAttr("hidden").fadeIn(1000);
    }else {
-      alert("Gana " + jugadores[actual]["nombre"]);
+      //alert("Gana " + jugadores[actual]["nombre"]);
+	   $("#ganador").html("Gana " + jugadores[actual]["nombre"]).hide().removeAttr("hidden").fadeIn(1000);
    }
    setTimeout(function() {
+	   $("#ganador").fadeOut(1800).attr("hidden")
        reset(false);
    }, 1000);
+	   
 }

@@ -202,12 +202,13 @@
    background-color: aquamarine;
 }
 
-#playertwo p{
+#playertwo{
    background-color: burlywood;
 }
 
 #resetea {
-   cursor: pointer;
+  	cursor: pointer;
+	margin-left: 2%;
 }
 
 .tcenter {
@@ -218,4 +219,31 @@
 }
 .tright {
 	text-align: right;
+}
+
+.juega {
+	height: 50px;
+	
+}
+
+.jugadores {
+	border: 1px dashed red;
+}
+
+.reinicio {
+	text-align: center;
+	padding: 4% 4%;
+	line-height: 10px;
+}
+
+.enmedio {
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	background-color: bisque;
+	border: 1px solid red;
+	padding: 5% 15%;
+	color: blue;
+	text-shadow: 5px 5px 10px darkblue;
+	font-size: 300%;
 }
