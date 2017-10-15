@@ -14,20 +14,28 @@
 <div class="base">
   	<div class="interior" >
       <div class="fila">
-         <div class="a-i enlinea push verde noclick" id="3"></div>
-         <div class="a-d enlinea push rojo noclick" id="2"></div>
+         <div class="a-i enlinea push verde noclick" id="3">
+		  	<audio id="audio3" src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" autostart="false"></audio>
+		  </div>
+         <div class="a-d enlinea push rojo noclick" id="2">
+		  <audio id="audio2" src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" autostart="false"></audio></div>
       </div>
       <div class="fila">
-         <div class="b-i enlinea push amarillo noclick" id="1"></div>
-         <div class="b-d enlinea push azul noclick" id="0"></div>
+         <div class="b-i enlinea push amarillo noclick" id="1">
+		  <audio id="audio1" src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" autostart="false"></audio></div>
+         <div class="b-d enlinea push azul noclick" id="0">
+		  <audio id="audio0" src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" autostart="false"></audio></div>
       </div>
       <div class="central">
 		  <h1 class="nombre">Simon <span>&copy;</span></h1>
           <div class="fila">
 			  <div class="cuenta enlinea" >
 				  <h1 id="movimiento" class="cuentaoff">--</h1> 
-				  <h3>Contador</h3>
+				  <h3>Cuenta</h3>
 			  </div>
+			  
+          </div>
+		  <div class="fila">
 			  <div class="btn-caja enlinea">
 			  	<div id="start" ></div>
 				<h3>Inicio</h3>
@@ -36,19 +44,17 @@
 			  	<div id="strict" ></div>
 				<h3>Strict</h3>
 			  </div>
-			  
-          </div>
-
+</div>
 		  <div class="fila">
 			  <div class="cuadrado" id="activa">
 				  <div id="onoff" class="off"></div>
 			  </div>
-            <!--<button type="button" class="boton" id="start" disabled>Start</button>-->
-            <!--<button type="button" class="redondeo" id="strict" disabled>Strict Mode OFF</button>-->
-           <!--<button type="button" class="left" id="onoff">On</button>-->
+
 		  </div>
          
       </div>
+		<audio id="error" src="src/sound/error.wav" autostart="false"></audio>
+		<audio id="win" src="src/sound/win.mp3" autostart="false"></audio>
    </div>
 </div>  
 </body>

@@ -52,6 +52,7 @@ function inicia() {
 // inicia partida
 function play() {
    
+	//var fin = 20;
 	var fin = 20;
 	var jugador = false;
 	error = false;
@@ -102,7 +103,9 @@ function jugar(fin, cont, jugador) {
 
 		}
 	}else {
-		//win
+		var sonido = document.getElementById("win");
+		sonido.play();
+		alert("Win");
 	}
 	//jugar(fin, cont);
    
@@ -123,12 +126,17 @@ function cpu(texto, colores, contador, cuenta) {
 
       // mostramos la pulsacion del color
 	 setTimeout(function() {
-
-      $("#" + number.toString()).removeClass(colores[number]).addClass(colores[number]+"click");
+		 var sonido = document.getElementById("audio" + number.toString());
+		 $("#" + number.toString()).removeClass(colores[number]).addClass(colores[number]+"click");
+		 
 		 $("#movimiento").text(texto + contador.toString());
+		 sonido.play();
+		 console.log("#audio" + number.toString());
 	 }, 1000);
 
-      setTimeout(function() {$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
+      setTimeout(function() {
+		  $("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
+		 
 							}, 2000);
       //$("#" + number.toString()).delay(20000).removeClass(colores[number]+"click").addClass(colores[number]);
       setTimeout(cpu, 2000, texto, colores, contador, cuenta+1);
@@ -145,6 +153,8 @@ function cpu(texto, colores, contador, cuenta) {
 function juega() {
    
 //	contador = jugada.length;
+	var sonido = document.getElementById("audio" + this.id);
+	sonido.play();
 	$("#0, #1, #2, #3").off("click");
 //	if (cuenta <= contador) {
 
@@ -152,8 +162,10 @@ function juega() {
 	   if (this.id === jugada[cuenta-1].toString()) { // mientras no se falle en modo estricto
 		  console.log("correcto");
 		   cuenta ++;
-		  setTimeout(jugar, 1000, 21, cuenta, true);
+		  setTimeout(jugar, 1000, 20, cuenta, true);
 	   }else {
+		   sonido = document.getElementById("error");
+		   sonido.play();
 		  console.log("Fallo");
 		   
 			   $("#movimiento").text("!!");
